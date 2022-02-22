@@ -48,4 +48,13 @@ public class List implements ListInterface {
         end.setNext(null);
         size--;
     }
+    
+
+    public Node getBegin() {
+        return begin;
+    }
+
+    public Node getEnd() {
+        return end;
+    }
 }

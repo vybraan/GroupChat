@@ -1,8 +1,8 @@
 package server;
 
 public class Node {
-    Object data;
-    Node next;
+    private Object data;
+    private Node next;
 
     Node(){
         data = null;
