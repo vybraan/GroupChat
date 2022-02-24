@@ -39,6 +39,28 @@ public class List implements ListInterface {
     }
 
     @Override
+    public void remove(Object x) {
+        Node aux = begin;
+
+        while (aux != null){
+            try {
+                if (begin.getData().equals(x)){
+                    begin = aux.getNext();
+                    break;
+                }else{
+                    if (aux.getNext().getData().equals(x)){
+                        aux.setNext(aux.getNext().getNext());
+                        break;
+                    }
+                }
+                aux = aux.getNext();
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public void removeEnd() {
         Node aux=begin;
         while (aux.getNext()!=end){

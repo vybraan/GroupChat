@@ -12,6 +12,7 @@ public class Node {
         this.data = data;
         next = null;
     }
+
     Node(Object data, Node next){
         this.data = data;
         this.next = next;
