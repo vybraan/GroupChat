@@ -2,9 +2,11 @@ package server;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientHandler implements Runnable {
     public static List MySimpleList = new List();
+    public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private String username;
     private BufferedReader in;
     private BufferedWriter out;
@@ -13,11 +15,12 @@ public class ClientHandler implements Runnable {
     public ClientHandler(Socket socket) {
         try {
             this.socket = socket;
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.username = in.readLine();
 
             MySimpleList.addEnd(this);
+            //clientHandlers.add(this);
             broadcastMessage("SERVER: "+ username +" has joined the chat");
         } catch (IOException e) {
             closeEverything(socket, in, out);
@@ -58,11 +61,11 @@ public class ClientHandler implements Runnable {
     }
 
     public void removeClientHandler(){
-        broadcastMessage("SERVER: "+ username + "has left the chat");
-
         MySimpleList.remove(this);
-        broadcastMessage("SERVER: "+ username + "has left the chat");
+        //clientHandlers.remove(this);
+        broadcastMessage("SERVER: "+ username + " has left the chat");
     }
+
 
     public void closeEverything(Socket socket, BufferedReader in, BufferedWriter out){
         removeClientHandler();

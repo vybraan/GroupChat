@@ -33,6 +33,7 @@ public class Client {
             Scanner k = new Scanner(System.in);
 
             while (socket.isConnected()) {
+                System.out.print("--> ");
                 String message = k.nextLine();
                 out.write(username +": "+ message);
                 out.newLine();

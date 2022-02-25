@@ -58,6 +58,7 @@ public class List implements ListInterface {
                 e.printStackTrace();
             }
         }
+        size--;
     }
 
     @Override
